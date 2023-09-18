@@ -55,8 +55,12 @@ class UNet(nn.Module):
         # print("cat4 x shape:", x.shape)
 
         log = self.outc(x)
+        _,preds=torch.max(log,dim=1)
+        preds=preds.to(torch.float32)
 
-        return log
+        # print('predictions size:',preds.shape)
+
+        return log, preds
 
 
 
